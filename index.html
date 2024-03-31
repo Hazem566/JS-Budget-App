@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="media.css" />
+    <title>Budget App</title>
+  </head>
+  <body>
+    <main>
+      <h1 class="section__title">budget app</h1>
+      <section class="section__center">
+        <div class="forms">
+          <form class="budget__form">
+            <label for="budget">please enter your budget</label>
+            <input type="number" id="budget" name="budget__input" />
+            <div class="calc__btns">
+              <button type="submit" class="btn0">add budget</button>
+              <button type="submit" class="btn3">edit budget</button>
+            </div>
+          </form>
+          <form class="expense__form">
+            <label for="expense__title">please enter your expense title</label>
+            <input
+              type="text"
+              id="expense__title"
+              name="expense__title__input"
+            />
+            <label for="expense__amount"
+              >please enter your expense amount</label
+            >
+            <input
+              type="number"
+              name="expense__amount__input"
+              id="expense__amount"
+            />
+            <button type="submit" class="btn1">add expense</button>
+          </form>
+        </div>
+        <div class="data">
+
+          <div class="info">
+            <article>
+              <h3>budget</h3>
+              <span class="budget__s">0</span>
+            </article>
+            <article>
+              <h3>expense</h3>
+              <span class="expense__s">0</span>
+            </article>
+            <article>
+              <h3>balance</h3>
+              <span class="balance__s"></span>
+            </article>
+          </div>
+          <div class="expenses__info">
+            <h3 class="expense__title">expense list</h3>
+            <ul class="list">
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>

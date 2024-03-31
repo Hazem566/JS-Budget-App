@@ -1,0 +1,21 @@
+
+@media only screen and (max-width: 992px) {
+    .section__center {
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-areas: 
+        "form form form form form form"
+        "data data data data data data";
+        row-gap: 2rem;
+    }
+    main {
+        width: 600px;
+    }
+    .forms {
+        gap: 1rem;
+    }
+}
+@media only screen and (max-width: 576px) {
+    main {
+        padding: 1rem 0.5rem;
+    }
+}

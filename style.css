@@ -1,0 +1,199 @@
+
+:root {
+    --main-green: rgb(13, 121, 13);
+    --main-red: rgb(150, 26, 26);
+    --border: 1px solid;
+    --radius-1: 0.2rem;
+    --radius-2: 0.35rem;
+    --text-1: clamp(2rem, 1.5rem + 1.467vw ,4rem);
+    --text-2: clamp(1.6rem, 0.5rem + 1.9587vw ,2rem);
+    --text-3: clamp(1.1rem, 0.4rem + 1.3587vw ,1.5rem);
+    --text-4: clamp(0.9rem, 0.2rem + 0.8587vw ,1.1rem);
+}
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+    background-color: #eeeeee;
+}
+img {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+main {
+    padding: 1.5rem 2rem;
+    width: 95%;
+}
+.section__title {
+    font-size: var(--text-1);
+    text-transform: uppercase;
+}
+.section__center {
+    margin-top: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-areas: 
+    "form form form form form form . data data data data data data data data data ";
+}
+.forms {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    grid-area: form;
+}
+.forms form {
+    border-radius: var(--radius-1);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    font-size: var(--text-3);
+    font-weight: 600;
+    text-transform: capitalize;
+    gap: 0.8rem;
+    align-items: flex-start;
+}
+.forms form input {
+    padding: 0.4rem;
+    font-size: var(--text-4);
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: var(--radius-2);
+    width: 100%;
+    outline: none;
+}
+.forms form button {
+    background-color: transparent;
+    padding: 0.4rem 0.8rem;
+    border-radius: var(--radius-2);
+    font-size: var(--text-4);
+    text-transform: capitalize;
+    cursor: pointer;
+    letter-spacing: 0.1rem;
+    font-weight: 600;
+}
+.budget__form {
+    border: 2px solid var(--main-green);
+}
+#budget {
+    border-color: var(--main-green);
+}
+.btn3{
+    display: none;
+}
+.btn0, .btn3 {
+    border-color: var(--main-green);
+    transition: 0.3s ease;
+}
+.calc__btns {
+    display: flex;
+    gap: 1rem;
+}
+.btn0:hover, .btn3:hover {
+    background-color: var(--main-green);
+    color: #fff;
+}
+.expense__form {
+    border: 2px solid var(--main-red);
+}
+#expense__title {
+    border-color: var(--main-red);
+}
+#expense__amount {
+    border-color: var(--main-red);
+}
+.btn1 {
+    border-color: var(--main-red);
+    transition: 0.3s ease;
+}
+.btn1:hover {
+    color: #fff;
+    background-color: var(--main-red);
+}
+.data {
+    grid-area: data;
+    display: grid;
+    grid-template-rows: 180px auto;
+}
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.info article {
+    text-align: center;
+}
+.info article h3 {
+    font-size: var(--text-2);
+    font-weight: 500;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+}
+.info article span {
+    font-size: var(--text-1);
+}
+.info article span::before {
+    content: "$";
+}
+.budget__s {
+    color: var(--main-green);
+}
+.expense__s {
+    color: var(--main-red);
+}
+.expenses__info {
+    display: none;
+}
+.show {
+    display: block; 
+}
+.expense__title {
+    text-align: center;
+    font-size: var(--text-2);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+.list {
+    list-style: none;
+}
+.item {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(50px, 150px) minmax(25px, 100px) auto);
+    justify-content: space-between;
+    color: var(--main-red);
+    align-items: center;
+    padding: 0 1rem;
+}
+.item:not(:first-child) {
+    margin-top: 0.5rem;
+}
+.item p {
+    text-transform: uppercase;
+    font-size: var(--text-3);
+}
+.item p::before {
+    content: "-";
+    margin: 0 0.2rem;
+}
+.item h3::before{
+    content: "$";
+}
+.tools {
+    display: flex;
+    align-items: center;
+}
+.tool {
+    height: 1.7rem;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0 0.5rem;
+}
