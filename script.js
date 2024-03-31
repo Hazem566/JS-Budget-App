@@ -217,9 +217,19 @@ function editBudgetFun(e){
     editBudget = true;
     reloadPage();
 }
+function scrollList() {
+    let items = JSON.parse(localStorage.getItem("expensesList"));
+    if(items.length > 6) {
+        expensesList.classList.add("scroll");
+    } else {
+        expensesList.classList.remove("scroll");
+    }
+}
 function reloadPage() {
     setValues();
     setItems();
     updateBalance();
-    checkBudget()
+    checkBudget();
+    scrollList();
 }
+// scroll
