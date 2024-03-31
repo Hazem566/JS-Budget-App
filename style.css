@@ -30,6 +30,7 @@ img {
 }
 
 main {
+    position: relative;
     padding: 1.5rem 2rem;
     width: 95%;
 }
@@ -164,8 +165,12 @@ main {
 .list {
     list-style: none;
 }
-.scroll {
+.scroll-1 {
     max-height: 252px;
+    overflow-y: scroll;
+}
+.scroll-2 {
+    max-height: 140px;
     overflow-y: scroll;
 }
 .item {

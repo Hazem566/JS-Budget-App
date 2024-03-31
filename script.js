@@ -15,6 +15,9 @@ const balance = document.querySelector(".balance__s");
 // target elements
 const expensesList = document.querySelector('.list');
 const listSection = document.querySelector(".expenses__info");
+// target titles
+const budgetTitle = document.querySelector("[for=budget]");
+const exTitle = document.querySelector("[for=expense__title]");
 // Edit Elements
 let editFlag = false;
 let editBudget = false;
@@ -219,12 +222,21 @@ function editBudgetFun(e){
 }
 function scrollList() {
     let items = JSON.parse(localStorage.getItem("expensesList"));
-    if(items.length > 6) {
-        expensesList.classList.add("scroll");
+    if(window.innerWidth > 992) {
+        if(items.length > 6) {
+            expensesList.classList.add("scroll-1");
+        } else {
+            expensesList.classList.remove("scroll-1");
+        }
     } else {
-        expensesList.classList.remove("scroll");
+        if(items.length > 4) {
+            expensesList.classList.add("scroll-2");
+        } else {
+            expensesList.classList.remove("scroll-2");
+        }
     }
 }
+
 function reloadPage() {
     setValues();
     setItems();

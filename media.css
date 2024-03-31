@@ -9,6 +9,10 @@
     }
     main {
         width: 600px;
+        margin-top: 1rem;
+    }
+    body {
+        align-items: flex-start;
     }
     .forms {
         gap: 1rem;
