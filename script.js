@@ -16,8 +16,9 @@ const balance = document.querySelector(".balance__s");
 const expensesList = document.querySelector('.list');
 const listSection = document.querySelector(".expenses__info");
 // target titles
-const budgetTitle = document.querySelector("[for=budget]");
-const exTitle = document.querySelector("[for=expense__title]");
+const budgetTitleEl = document.querySelector("[for=budget]");
+const exTitleEl = document.querySelector("[for=expense__title]");
+const exAmountTitleEl = document.querySelector("[for=expense__amount]");
 // Edit Elements
 let editFlag = false;
 let editBudget = false;
@@ -40,6 +41,7 @@ function addBudget(e) {
         localStorage.setItem("valuesList", JSON.stringify(valuesList));
         budgetInput.value = "";
         reloadPage();
+        displayAlert(budgetTitleEl, "budget added successfully!", "success__alert");
     } else if(editBudget && budgetValue){
         let list = JSON.parse(localStorage.getItem("valuesList"));
         list = list.map(item => {
@@ -50,7 +52,10 @@ function addBudget(e) {
         budgetInput.value = "";
         editBudget = false;
         reloadPage();
-    } else if(editBudget && (!budgetValue||budgetValue==0)) {
+        budgetTitleEl.innerText = "please enter your budget";
+        budgetTitleEl.classList.remove("success__alert");
+        displayAlert(budgetTitleEl, "budget edited successfully!", "success__alert");
+    } else if(editBudget && (budgetValue==0)) {
         let list = JSON.parse(localStorage.getItem("valuesList"));
         list = list.map(item => {
             if(item.id==="budget") item.value=0;
@@ -60,6 +65,11 @@ function addBudget(e) {
         budgetInput.value = "";
         editBudget = false;
         reloadPage();
+        budgetTitleEl.innerText = "please enter your budget"
+        budgetTitleEl.classList.remove("success__alert");
+        displayAlert(budgetTitleEl, "budget edited successfully!", "success__alert");
+    } else if((editBudget||!editBudget) && !budgetValue){
+        displayAlert(budgetTitleEl, "Enter Value!", "danger__alert");
     }
 }
 // localStorage.clear();
@@ -100,7 +110,7 @@ function addExpenses(e) {
     e.preventDefault();
     let exTitle = expenseTitle.value;
     let exAmount = parseInt(expenseAmount.value);
-    if((exAmount&&exTitle)&&!editFlag) {
+    if(exTitle.length <= 11 && exAmount > 0 && !editFlag) {
         expenseAmount.value = "";
         expenseTitle.value = "";
         let id = new Date().getTime().toString();
@@ -111,7 +121,9 @@ function addExpenses(e) {
         });
         localStorage.setItem("valuesList", JSON.stringify(valuesList));
         reloadPage();
-    } else if((exAmount&&exTitle)&&editFlag) {
+        displayAlert(exTitleEl, "expense added successfully", "success__alert");
+        displayAlert(exAmountTitleEl, "expense added successfully", "success__alert");
+    } else if(exTitle.length <= 11 && exAmount > 0 && editFlag) {
         expenseAmount.value = "";
         expenseTitle.value = "";
         let list = JSON.parse(localStorage.getItem("expensesList"));
@@ -130,6 +142,18 @@ function addExpenses(e) {
         });
         localStorage.setItem("valuesList", JSON.stringify(valuesList));
         reloadPage();
+        exAmountTitleEl.innerText = "please enter your expense amount";
+        exAmountTitleEl.classList.remove("success__alert");
+        exTitleEl.innerText = "Please Enter Your Expense Title";
+        exTitleEl.classList.remove("success__alert");
+        displayAlert(exTitleEl, "expense edited successfully", "success__alert");
+        displayAlert(exAmountTitleEl, "expense edited successfully", "success__alert");
+    } else {
+        if((exTitle.length > 11 || exTitle.length < 1) && (editFlag||!editFlag)) {
+            displayAlert(exTitleEl, "maxmum 11 chars and minimum 1 char!", "danger__alert");
+        } else if ((exAmount < 1||!exAmount) && (editFlag||!editFlag)) {
+            displayAlert(exAmountTitleEl, "minimum $1!", "danger__alert");
+        }
     }
 }
 function setItems() {
@@ -197,6 +221,10 @@ function editItem(e) {
     });
     localStorage.setItem("valuesList", JSON.stringify(valuesList));
     reloadPage();
+    exAmountTitleEl.innerText = "ready to edit!";
+    exAmountTitleEl.classList.add("success__alert");
+    exTitleEl.innerText = "ready to edit!";
+    exTitleEl.classList.add("success__alert");
 }
 function checkBudget(){
     let bud = getData("budget");
@@ -219,6 +247,8 @@ function editBudgetFun(e){
     localStorage.setItem("valuesList", JSON.stringify(list));
     editBudget = true;
     reloadPage();
+    budgetTitleEl.innerText = "ready to edit";
+    budgetTitleEl.classList.add("success__alert");
 }
 function scrollList() {
     let items = JSON.parse(localStorage.getItem("expensesList"));
@@ -236,7 +266,15 @@ function scrollList() {
         }
     }
 }
-
+function displayAlert(element, value, className){
+    let orgValue = element.innerText;
+    element.innerText = value;
+    element.classList.add(className);
+    setTimeout(()=> {
+        element.innerText = orgValue;
+        element.classList.remove(className);
+    }, 1600);
+}
 function reloadPage() {
     setValues();
     setItems();

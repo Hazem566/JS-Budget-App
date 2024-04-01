@@ -206,3 +206,9 @@ main {
     cursor: pointer;
     margin: 0 0.5rem;
 }
+.success__alert {
+    color: var(--main-green);
+}
+.danger__alert {
+    color: var(--main-red);
+}
