@@ -29,7 +29,6 @@ window.addEventListener("DOMContentLoaded", reloadPage);
 addExp.addEventListener("click", addExpenses);
 editBud.addEventListener("click", editBudgetFun)
 /* ---------------------- FUNCTIONS ---------------------- */
-// valuesList / expensesList
 function addBudget(e) {
     e.preventDefault();
     let budgetValue = parseInt(budgetInput.value);
@@ -72,7 +71,6 @@ function addBudget(e) {
         displayAlert(budgetTitleEl, "Enter Value!", "danger__alert");
     }
 }
-// localStorage.clear();
 function getValuesList(){
     return localStorage.getItem("valuesList") ?
     JSON.parse(localStorage.getItem("valuesList")) : 
@@ -282,4 +280,3 @@ function reloadPage() {
     checkBudget();
     scrollList();
 }
-// scroll
