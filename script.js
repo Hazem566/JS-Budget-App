@@ -107,7 +107,7 @@ function updateBalance() {
 function addExpenses(e) {
     e.preventDefault();
     let exTitle = expenseTitle.value;
-    let exAmount = parseInt(expenseAmount.value);
+    let exAmount = parseFloat(expenseAmount.value);
     if(exTitle.length <= 11 && exAmount > 0 && !editFlag) {
         expenseAmount.value = "";
         expenseTitle.value = "";
@@ -280,3 +280,4 @@ function reloadPage() {
     checkBudget();
     scrollList();
 }
+
