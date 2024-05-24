@@ -31,7 +31,7 @@ editBud.addEventListener("click", editBudgetFun)
 /* ---------------------- FUNCTIONS ---------------------- */
 function addBudget(e) {
     e.preventDefault();
-    let budgetValue = parseInt(budgetInput.value);
+    let budgetValue = parseFloat(budgetInput.value);
     if((budgetValue && budgetValue > 0) && !editBudget) {
         let localBudget = getData("budget");
         localBudget += budgetValue;
@@ -78,13 +78,13 @@ function getValuesList(){
 }
 function getData(key) {
     let valuesList = getValuesList();
-    if(key=="budget")return parseInt(valuesList.filter(i=>{
+    if(key=="budget")return parseFloat(valuesList.filter(i=>{
         if(i.id=="budget")return i;
     })[0].value);
-    else if(key=="expense")return parseInt(valuesList.filter(i=>{
+    else if(key=="expense")return parseFloat(valuesList.filter(i=>{
         if(i.id=="expense")return i;
     })[0].value);
-    else if(key=="balance")return parseInt(valuesList.filter(i=>{
+    else if(key=="balance")return parseFloat(valuesList.filter(i=>{
         if(i.id=="balance")return i;
     })[0].value);
 }
@@ -106,6 +106,7 @@ function updateBalance() {
 }
 function addExpenses(e) {
     e.preventDefault();
+    console.log(expenseAmount.value);
     let exTitle = expenseTitle.value;
     let exAmount = parseFloat(expenseAmount.value);
     if(exTitle.length <= 11 && exAmount > 0 && !editFlag) {
@@ -192,7 +193,7 @@ function deleteItems(e){
     let item = e.currentTarget.parentElement.parentElement;
     let id = item.id;
     expensesList.removeChild(item);
-    let value = parseInt(e.currentTarget.parentElement.previousElementSibling.innerText);
+    let value = parseFloat(e.currentTarget.parentElement.previousElementSibling.innerText);
     let totalEx = getData("expense") - value;
     let valuesList = getValuesList().map(item => {
         if(item.id=="expense")item.value=totalEx;
